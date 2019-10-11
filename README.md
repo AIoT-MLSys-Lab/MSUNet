@@ -310,7 +310,7 @@ python train_consistency.py ~/Downloads/Data/CIFAR100 --model MSUnet_CIFAR100 --
 ``` 
 
 ### Member
-* Yu Zheng* 
+* Yu Zheng* (Equal Contribution)
 * Shen Yan* (Equal Contribution)
 * Mi Zhang
 * Xiao Zeng
