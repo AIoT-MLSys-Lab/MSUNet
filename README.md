@@ -27,7 +27,7 @@ Note that the model reached the target sparsity after 100 epochs.
 
 ### Design details
 
-MSUNet is designed based on three key techniques: 1) ternary conv layers, 2) sparse conv layers and 3) quantization.
+MSUNet is designed based on four key techniques: 1) ternary conv layers, 2) sparse conv layers, 3) quantization and 4). cutmix + self-supervised consistency regularizer.
 The details of these techniques are briefly described below. 
 
 In terms of implementation, we use pytorch to implement our model. Our repository is built on top of [pytorch-image-models](https://github.com/rwightman/pytorch-image-models) (by Ross Wightman).
