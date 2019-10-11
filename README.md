@@ -27,7 +27,7 @@ Note that the model reached the target sparsity after 100 epochs.
 
 ### Design details
 
-MSUNet is designed based on four key techniques: 1) ternary conv layers, 2) sparse conv layers, 3) quantization and 4). cutmix + self-supervised consistency regularizer.
+MSUNet is designed based on four key techniques: 1) ternary conv layers, 2) sparse conv layers, 3) quantization and 4). self-supervised consistency regularizer.
 The details of these techniques are briefly described below. 
 
 In terms of implementation, we use pytorch to implement our model. Our repository is built on top of [pytorch-image-models](https://github.com/rwightman/pytorch-image-models) (by Ross Wightman).
@@ -71,6 +71,10 @@ In terms of implementation, we use pytorch to implement our model. Our repositor
     * We implement mixed precision training using NVIDIA's [`apex.amp`](https://github.com/NVIDIA/apex) tool with **`opt_level=O2`**, which casts the model weights to FP16, patches the model's `forward` method to cast data to FP16, 
     and keeps batchnorms in FP32 at **training time** for numerical stability purpose.
     * **At test time**, we implement mixed precision using [`apex.amp`](https://github.com/NVIDIA/apex) with **`opt_level=O3`**, which further **casts the batch normalization layers to FP16** with little affect on the testing accuracy. 
+    
+* **Cutmix + self-supervised consistency regularizer**
+* **During the training**, we use cutmix as a data augmentation technique. In addition, we propose a self-supervised consistency regularizer, that constructs the combination samples in the feature space without using the label information, allowing it to facilitate feature-level consistency between cutmix data points and the combination samples in the feature space. We found it helps to predict consistent soft-labels at interpolated points and observed further accuracy improvement using cutmix in the training.
+    
     
 
 * **Scoring**
