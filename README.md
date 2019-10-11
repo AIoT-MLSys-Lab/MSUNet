@@ -304,3 +304,10 @@ python train_consistency.py ~/Downloads/Data/CIFAR100 --model MSUnet_CIFAR100 --
  --mixup-off-epoch 140 --mixup 1.0 --cutmix_prob 0.5 --softmax-multiplier 1.0 --no-prefetcher \
  --amp --opt-level O2
 ``` 
+
+### Member
+* Yu Zheng*
+* Shen Yan*
+* Mi Zhang
+* Xiao Zeng
+* Biyi Fang
