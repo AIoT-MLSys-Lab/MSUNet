@@ -1,0 +1,210 @@
+aa: null
+alpha: null
+amp: false
+batch_size: 64
+binarizable: T
+bn_eps: null
+bn_momentum: null
+bn_tf: false
+clean_train: false
+color_jitter: 0.4
+cooldown_epochs: 10
+cutmix_prob: 0.5
+cycle_limit: null
+data: /home/eb1228msu/Downloads/Data/CIFAR100
+decay_epochs:
+- 300
+- 400
+- 500
+- 600
+- 700
+- 800
+- 900
+- 1000
+decay_rate: 0.25
+drop: 0.0
+epochs: 1050
+eval_metric: prec1
+freeze_binary: false
+gp: avg
+img_size: 32
+initial_checkpoint: ''
+interpolation: ''
+local_rank: 0
+log_interval: 50
+lr: 0.1
+mean: null
+min_lr: 1.0e-05
+mixup: 1.0
+mixup_off_epoch: 0
+model: MSUnet_CIFAR100
+model_ema: false
+model_ema_decay: 0.9998
+model_ema_force_cpu: false
+momentum: 0.9
+no_prefetcher: true
+no_resume_opt: false
+num_classes: 100
+num_gpu: 1
+opt: sgd
+opt_eps: 1.0e-08
+opt_level: O1
+output: ''
+pretrained: false
+prune: false
+pruner: V1
+recount: 1
+recovery_interval: 0
+remode: const
+reprob: 0.0
+reset_lr_scheduler: null
+resume: ''
+save_images: false
+sched: step
+seed: 66
+smoothing: 0.1
+softmax_multiplier: 1.0
+start_epoch: 0
+std: null
+sync_bn: false
+tta: 0
+warmup_epochs: 5
+warmup_lr: 0.0001
+weight_decay: 0.0001
+workers: 4
+==============================
+GenEfficientNet(
+  (act_fn1): ReLU_Module()
+  (act_fn2): ReLU_Module()
+  (conv_stem): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (blocks): Sequential(
+    (0): Sequential(
+      (0): DepthwiseSeparableConv(
+        (act_fn1): ReLU_Module()
+        (act_fn2): ReLU_Module()
+        (conv_dw): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv_pw): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Sequential(
+      (0): InvertedResidual(
+        (act_fn1): ReLU_Module()
+        (act_fn2): ReLU_Module()
+        (conv_pw): MixedConv2d(
+          (0): Conv2d(32, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (1): Conv2d(32, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+        (bn1): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv_dw): Conv2d(384, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=384, bias=False)
+        (bn2): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv_pwl): MixedConv2d(
+          (0): Conv2d(192, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (1): Conv2d(192, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+        (bn3): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (2): Sequential(
+      (0): InvertedResidual(
+        (act_fn1): Swish_Module()
+        (act_fn2): Swish_Module()
+        (conv_pw): Conv2d(64, 320, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv_dw): MixedConv2d(
+          (0): Conv2d(108, 108, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=108, bias=False)
+          (1): Conv2d(106, 106, kernel_size=(5, 5), stride=(2, 2), padding=(2, 2), groups=106, bias=False)
+          (2): Conv2d(106, 106, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), groups=106, bias=False)
+        )
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (se): SqueezeExcite(
+          (act_fn): Swish_Module()
+          (gate_fn): Sigmoid_Module()
+          (conv_reduce): Conv2d(320, 32, kernel_size=(1, 1), stride=(1, 1))
+          (conv_expand): Conv2d(32, 320, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (conv_pwl): Conv2d(320, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (1): InvertedResidual(
+        (act_fn1): Swish_Module()
+        (act_fn2): Swish_Module()
+        (conv_pw): MixedConv2d(
+          (0): Conv2d(64, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (1): Conv2d(64, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+        (bn1): BatchNorm2d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv_dw): MixedConv2d(
+          (0): Conv2d(384, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=384, bias=False)
+          (1): Conv2d(384, 384, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=384, bias=False)
+        )
+        (bn2): BatchNorm2d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (se): SqueezeExcite(
+          (act_fn): Swish_Module()
+          (gate_fn): Sigmoid_Module()
+          (conv_reduce): Conv2d(768, 64, kernel_size=(1, 1), stride=(1, 1))
+          (conv_expand): Conv2d(64, 768, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (conv_pwl): MixedConv2d(
+          (0): Conv2d(384, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (1): Conv2d(384, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+        (bn3): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (3): Sequential(
+      (0): InvertedResidual(
+        (act_fn1): Swish_Module()
+        (act_fn2): Swish_Module()
+        (conv_pw): Conv2d(128, 640, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv_dw): MixedConv2d(
+          (0): Conv2d(214, 214, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=214, bias=False)
+          (1): Conv2d(213, 213, kernel_size=(5, 5), stride=(2, 2), padding=(2, 2), groups=213, bias=False)
+          (2): Conv2d(213, 213, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), groups=213, bias=False)
+        )
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (se): SqueezeExcite(
+          (act_fn): Swish_Module()
+          (gate_fn): Sigmoid_Module()
+          (conv_reduce): Conv2d(640, 32, kernel_size=(1, 1), stride=(1, 1))
+          (conv_expand): Conv2d(32, 640, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (conv_pwl): MixedConv2d(
+          (0): Conv2d(320, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (1): Conv2d(320, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+        (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (1): InvertedResidual(
+        (act_fn1): Swish_Module()
+        (act_fn2): Swish_Module()
+        (conv_pw): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv_dw): MixedConv2d(
+          (0): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512, bias=False)
+          (1): Conv2d(512, 512, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=512, bias=False)
+        )
+        (bn2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (se): SqueezeExcite(
+          (act_fn): Swish_Module()
+          (gate_fn): Sigmoid_Module()
+          (conv_reduce): Conv2d(1024, 64, kernel_size=(1, 1), stride=(1, 1))
+          (conv_expand): Conv2d(64, 1024, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (conv_pwl): MixedConv2d(
+          (0): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+        (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (conv_head): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+  (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (global_pool): SelectAdaptivePool2d (output_size=1, pool_type=avg)
+  (classifier): Linear(in_features=256, out_features=100, bias=True)
+)
+ The architecture cfg is:[['ds_r1_k3_s1_e1_c64'], ['ir_r1_k3_a1.1_p1.1_s1_e6_c64'], ['ir_r1_k3.5.7_s2_e5_c128_se0.5_nsw', 'ir_r1_k3.5_a1.1_p1.1_s1_e6_c128_se0.5_nsw'], ['ir_r1_k3.5.7_p1.1_s2_e5_c256_se0.25_nsw', 'ir_r1_k3.5_p1.1_s1_e4_c256_se0.25_nsw']]

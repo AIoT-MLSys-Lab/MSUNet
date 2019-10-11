@@ -1,0 +1,43 @@
+    arch_def =[
+        ['ds_r1_k3_s1_e1_c64'],
+        ['ir_r1_k3_a1.1_p1.1_s1_e6_c64'],
+        ['ir_r1_k3.5.7_s2_e6_c128_se0.5_nsw', 'ir_r1_k3.5_a1.1_p1.1_s1_e6_c128_se0.5_nsw'],
+        ['ir_r1_k3.5.7_p1.1_s2_e6_c256_se0.25_nsw', 'ir_r1_k3.5_p1.1_s1_e6_c256_se0.25_nsw'],
+    ]
+
+ terminal 1, 2 and 3 are e5, e4 and e3 at the last block
+
+
+original network reference:
+./output/train/20190930-184940-MSUnet_CIFAR100-32/Top/model_best.pth.tar
+
+
+ 232103, 232152, 232217
+ checkpoints are
+./output/train/20191008-232103-MSUnet_CIFAR100-32/Last/checkpoint-575.pth.tar       (665, 79.75)
+./output/train/20191008-232152-MSUnet_CIFAR100-32/Last/checkpoint-565.pth.tar       (664, 79.40)
+./output/train/20191008-232217-MSUnet_CIFAR100-32/Last/checkpoint-576.pth.tar       (663, 79.31)
+
+# Now pruning
+125559 (e5)
+125648 (e4)
+125724 (e3)
+
+
+running #4 #5 #6 at server
+223254, 222518, 222535
+
+
+running #2 at HPCC my account
+
+Wide resnet (40-4) tested on local computer
+034040 wide resnet with data augmentation
+032128 wide resent withou data augmentation
+
+
+On hpc I'm running 3 experiments on pruning
+The are all pruned from the checkpoint of 644 running in the server
+./output/train/20191009-223254-MSUnet_CIFAR100-32/Top/model_best.pth.tar
+V4c4Pv2, pruning with v2 sparsity=(0.9,0.5)
+V4c4Pv3, pruning with V3 pruner (classifier is pruned), sparsity=(0.9, 0.5, 0.9).
+V4c4Pv2Clean, pruning with v2 sparsity=(0.9,0.5) with clean training data.
