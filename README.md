@@ -73,7 +73,7 @@ In terms of implementation, we use pytorch to implement our model. Our repositor
     * **At test time**, we implement mixed precision using [`apex.amp`](https://github.com/NVIDIA/apex) with **`opt_level=O3`**, which further **casts the batch normalization layers to FP16** with little affect on the testing accuracy. 
     
 * **Cutmix + self-supervised consistency regularizer**
-* **During the training**, we use cutmix as a data augmentation technique. In addition, we propose a self-supervised consistency regularizer, that constructs the combination samples in the feature space without using the label information, allowing it to facilitate feature-level consistency between cutmix data points and the combination samples in the feature space. We found it helps to predict consistent soft-labels at interpolated points and observed further accuracy improvement using cutmix in the training.
+   * During the training, we use cutmix as a data augmentation technique. In addition, we propose a self-supervised consistency regularizer, that constructs the combination samples in the feature space without using the label information, allowing it to facilitate feature-level consistency between cutmix data points and the combination samples in the feature space. We found it helps to predict consistent soft-labels at interpolated points and observed further accuracy improvement using cutmix in the training.
     
     
 
