@@ -305,7 +305,7 @@ python train_consistency.py ~/Downloads/Data/CIFAR100 --model MSUnet_CIFAR100 --
  --resume ./output/train/20191009-194002-MSUnet_CIFAR100-32/Last/checkpoint-1035.pth.tar \
  --start-epoch 0 --warmup-epochs 0 --epochs 265 --lr 1e-3 --reset-lr-scheduler 1e-3 --decay-rate 0.25 --decay-epochs 120 170 200 220 250 \
  --alpha 0.67749 --freeze-binary --prune --pruner V2 \
- --mixup-off-epoch 140 --mixup 1.0 --cutmix_prob 0.5 --softmax-multiplier 1.0 --no-prefetcher \
+ --mixup-off-epoch 140 --mixup 1.0 --cutmix_prob 0.5 --softmax-multiplier 1.0 --clean-train --no-prefetcher \
  --amp --opt-level O2
 ``` 
 
