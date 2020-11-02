@@ -1,5 +1,5 @@
 # MSUNet-v3
-MSUNet-v3 is a deep convolutional neural network that competes in the CIFAR-100 image classification task in the 2019 NeurIPS MicroNet Challenge. 
+MSUNet-v3 is a deep convolutional neural network that won 4th place in the CIFAR-100 image classification task in the 2019 NeurIPS [Google MicroNet Challenge](https://micronet-challenge.github.io/leaderboard.html).
 
 It exploits the power of mixed depthwise convolution, quantization and sparsification to achieve lightweight yet effective network architecture.
 
